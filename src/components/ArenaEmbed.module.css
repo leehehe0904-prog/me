@@ -1,0 +1,119 @@
+.wrap {
+  width: 100%;
+}
+
+.frame {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  background: #0d0f14;
+  border: 1px solid var(--night-line);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+.poster {
+  position: absolute;
+  inset: 0;
+}
+.img {
+  object-fit: cover;
+}
+.scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(22, 21, 18, 0.15), rgba(22, 21, 18, 0.65));
+}
+.center {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 12px;
+  padding: 24px;
+  text-align: center;
+}
+
+.play {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  height: 52px;
+  padding: 0 26px 0 20px;
+  border: 0;
+  border-radius: var(--radius);
+  background: var(--cinnabar);
+  color: var(--paper-3);
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  transition:
+    background 0.2s var(--ease),
+    transform 0.2s var(--ease);
+}
+.play:hover {
+  background: var(--cinnabar-bright);
+  transform: translateY(-1px);
+}
+.tri {
+  width: 0;
+  height: 0;
+  border-left: 11px solid currentColor;
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent;
+}
+
+.touchNote {
+  display: none;
+  max-width: 18em;
+  padding: 10px 14px;
+  background: rgba(22, 21, 18, 0.82);
+  border: 1px solid var(--night-line);
+  border-radius: var(--radius);
+  color: var(--night-text);
+  font-size: 14px;
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .play {
+    display: none;
+  }
+  .touchNote {
+    display: block;
+  }
+}
+
+.bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 24px;
+  margin-top: 14px;
+  font-size: 13px;
+  color: var(--night-muted);
+}
+.full {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--night-text);
+  border-bottom: 1px solid var(--night-line);
+  padding-bottom: 2px;
+  transition:
+    border-color 0.2s,
+    color 0.2s;
+}
+.full:hover {
+  color: var(--amber);
+  border-color: var(--amber);
+}

@@ -1,0 +1,16 @@
+.seal {
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  background: var(--cinnabar);
+  color: var(--paper-3);
+  font-family: var(--font-serif);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: 0;
+  border-radius: 3px;
+  /* 內框線，像印章壓在紙上留下的邊 */
+  box-shadow:
+    inset 0 0 0 2px var(--cinnabar),
+    inset 0 0 0 3px rgba(251, 249, 244, 0.55);
+}

@@ -1,0 +1,254 @@
+import Image from "next/image";
+import Link from "next/link";
+import Playroom from "@/components/Playroom";
+import Seal from "@/components/Seal";
+import SectionHead from "@/components/SectionHead";
+import WorkEntry from "@/components/WorkEntry";
+import { dreams, interests, journey, profile, toolbox } from "@/content/profile";
+import { works } from "@/content/works";
+import styles from "./home.module.css";
+
+export default function Home() {
+  const [zombie, slime, arena, stars] = works;
+
+  return (
+    <>
+      {/* ───────── 開場 ───────── */}
+      <section className={styles.hero}>
+        <div className={`container ${styles.heroGrid}`}>
+          <div className={styles.heroText}>
+            <p className={styles.heroKicker} data-reveal>
+              <span>作品集</span>
+              <span className={styles.dot} aria-hidden="true" />
+              <span>2026</span>
+            </p>
+            <h1 className={styles.heroName} data-reveal style={{ "--reveal-delay": "0.05s" } as React.CSSProperties}>
+              {profile.name}
+            </h1>
+            <p className={styles.heroLine} data-reveal style={{ "--reveal-delay": "0.1s" } as React.CSSProperties}>
+              十一歲，正在把
+              <br />
+              點子做成<em>遊戲</em>。
+            </p>
+            <p className={styles.heroBody} data-reveal style={{ "--reveal-delay": "0.15s" } as React.CSSProperties}>
+              2026 年 10 月，我做出第一個網站；一週後做出雙人對戰遊戲，再過一週開始做
+              3D。這裡收錄我目前的四款作品，和一路學到的東西。
+            </p>
+            <div className={styles.heroActions} data-reveal style={{ "--reveal-delay": "0.2s" } as React.CSSProperties}>
+              <Link href="#works" className={styles.btnPrimary}>
+                看作品 <span aria-hidden="true">↓</span>
+              </Link>
+              <Link href="#play" className={styles.btnText}>
+                直接玩一場
+              </Link>
+            </div>
+          </div>
+
+          <div className={styles.heroArt} aria-hidden="true">
+            <figure className={`${styles.shot} ${styles.shotA}`}>
+              <Image src={zombie.cover.src} alt="" placeholder="blur" priority sizes="(max-width: 900px) 80vw, 520px" />
+              <figcaption>
+                <span>01</span>
+                {zombie.title}
+              </figcaption>
+            </figure>
+            <figure className={`${styles.shot} ${styles.shotB}`}>
+              <Image src={slime.cover.src} alt="" placeholder="blur" sizes="(max-width: 900px) 60vw, 360px" />
+              <figcaption>
+                <span>02</span>
+                {slime.title}
+              </figcaption>
+            </figure>
+            <figure className={`${styles.shot} ${styles.shotC}`}>
+              <Image src={arena.cover.src} alt="" placeholder="blur" sizes="(max-width: 900px) 50vw, 280px" />
+              <figcaption>
+                <span>03</span>
+                {arena.title}
+              </figcaption>
+            </figure>
+            <span className={styles.stamp}>
+              <Seal size={84} />
+            </span>
+          </div>
+        </div>
+
+        <div className="container">
+          <dl className={styles.stats} data-reveal>
+            <div>
+              <dt>完成的遊戲</dt>
+              <dd>
+                4<small>款</small>
+              </dd>
+            </div>
+            <div>
+              <dt>其中 3D 遊戲</dt>
+              <dd>
+                2<small>款</small>
+              </dd>
+            </div>
+            <div>
+              <dt>從第一個網頁到第二款 3D 遊戲</dt>
+              <dd>
+                28<small>天</small>
+              </dd>
+            </div>
+            <div>
+              <dt>年齡</dt>
+              <dd>
+                {profile.age}
+                <small>歲</small>
+              </dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      {/* ───────── 作品 ───────── */}
+      <section id="works" className={styles.section}>
+        <div className="container">
+          <SectionHead
+            no="01"
+            label="作品"
+            title="四款遊戲，兩款 2D、兩款 3D。"
+            lead="每一款都能在瀏覽器裡直接玩。點進去可以看到玩法、操作方式，以及做的時候的想法。"
+          />
+          <div className={styles.workList}>
+            <WorkEntry work={zombie} />
+            <WorkEntry work={slime} flip />
+          </div>
+          <div className={styles.workPair}>
+            <WorkEntry work={arena} size="sm" />
+            <WorkEntry work={stars} size="sm" />
+          </div>
+        </div>
+      </section>
+
+      {/* ───────── 遊戲間 ───────── */}
+      <section id="play" className={styles.dark}>
+        <div className="container">
+          <SectionHead
+            no="02"
+            label="遊戲間"
+            tone="dark"
+            title="不用下載，現在就能玩。"
+            lead="這兩款 2D 遊戲直接放在網站裡。方塊鬥技場可以和電腦對打，也可以找朋友一起用同一個鍵盤。"
+          />
+          <Playroom />
+        </div>
+      </section>
+
+      {/* ───────── 關於我 ───────── */}
+      <section id="about" className={styles.section}>
+        <div className="container">
+          <SectionHead no="03" label="關於我" title="喜歡玩遊戲，更喜歡想它是怎麼做出來的。" />
+          <div className={styles.aboutGrid}>
+            <aside className={styles.card} data-reveal>
+              <div className={styles.cardTop}>
+                <Seal size={56} />
+                <div>
+                  <p className={styles.cardName}>{profile.name}</p>
+                  <p className={styles.cardRole}>見習遊戲開發者</p>
+                </div>
+              </div>
+              <dl className={styles.cardList}>
+                <div>
+                  <dt>年齡</dt>
+                  <dd>{profile.age} 歲</dd>
+                </div>
+                <div>
+                  <dt>正在學</dt>
+                  <dd>JavaScript、Three.js</dd>
+                </div>
+                <div>
+                  <dt>喜歡</dt>
+                  <dd>遊戲、運動、看書</dd>
+                </div>
+                <div>
+                  <dt>作品</dt>
+                  <dd>4 款遊戲、1 個網站</dd>
+                </div>
+              </dl>
+            </aside>
+
+            <div className={styles.aboutText}>
+              <p className={styles.lead} data-reveal>
+                大家好，我叫{profile.name}，今年 {profile.age}{" "}
+                歲。玩遊戲的時候，我常常在想：這個敵人為什麼會追著我跑？這個畫面是怎麼畫出來的？
+              </p>
+              <p data-reveal>
+                為了找到答案，我開始學 HTML、CSS 和
+                JavaScript。從一個自我介紹的網頁開始，接著做出能兩個人對打的遊戲，現在已經在做有燈光、物理和連線的 3D
+                世界。
+              </p>
+              <ul className={styles.interests}>
+                {interests.map((it, i) => (
+                  <li key={it.title} data-reveal style={{ "--reveal-delay": `${i * 0.06}s` } as React.CSSProperties}>
+                    <span className={styles.interestNo}>{String(i + 1).padStart(2, "0")}</span>
+                    <h3>{it.title}</h3>
+                    <p>{it.body}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ───────── 學習歷程 ───────── */}
+      <section id="journey" className={`${styles.section} ${styles.sunken}`}>
+        <div className="container">
+          <SectionHead
+            no="04"
+            label="學習歷程"
+            title="28 天，五個里程碑。"
+            lead="以下日期都來自 Git 的提交紀錄。每一次存檔，都是一小步。"
+          />
+
+          <ol className={styles.timeline}>
+            {journey.map((j, i) => (
+              <li key={j.date} data-reveal style={{ "--reveal-delay": `${i * 0.05}s` } as React.CSSProperties}>
+                <time className={styles.tlDate}>{j.date}</time>
+                <span className={styles.tlDot} aria-hidden="true" />
+                <div className={styles.tlBody}>
+                  <h3>{j.title}</h3>
+                  <p>{j.body}</p>
+                </div>
+                <span className={styles.tlTag}>{j.tag}</span>
+              </li>
+            ))}
+          </ol>
+
+          <div className={styles.split}>
+            <div data-reveal>
+              <h3 className={styles.subhead}>工具箱</h3>
+              <ul className={styles.tools}>
+                {toolbox.map((t) => (
+                  <li key={t.name}>
+                    <span className={styles.toolName}>{t.name}</span>
+                    <span className={styles.toolUse}>{t.usedIn}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div data-reveal>
+              <h3 className={styles.subhead}>夢想清單</h3>
+              <ul className={styles.dreams}>
+                {dreams.map((d) => (
+                  <li key={d.goal} data-status={d.status}>
+                    <span className={styles.check} aria-hidden="true" />
+                    <div>
+                      <p className={styles.dreamWhen}>{d.when}</p>
+                      <p className={styles.dreamGoal}>{d.goal}</p>
+                    </div>
+                    <span className={styles.dreamNote}>{d.note}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
