@@ -4,7 +4,8 @@ import Playroom from "@/components/Playroom";
 import Seal from "@/components/Seal";
 import SectionHead from "@/components/SectionHead";
 import WorkEntry from "@/components/WorkEntry";
-import { dreams, interests, journey, profile, toolbox } from "@/content/profile";
+import { interests, journey, profile } from "@/content/profile";
+import { parts, report } from "@/content/report";
 import { works } from "@/content/works";
 import styles from "./home.module.css";
 
@@ -201,7 +202,7 @@ export default function Home() {
             no="04"
             label="學習歷程"
             title="28 天，五個里程碑。"
-            lead="以下日期都來自 Git 的提交紀錄。每一次存檔，都是一小步。"
+            lead="以下日期都來自 Git 的提交紀錄。每一次存檔，都是一小步；完整的目標、課程與心得整理在學習報告裡。"
           />
 
           <ol className={styles.timeline}>
@@ -218,35 +219,26 @@ export default function Home() {
             ))}
           </ol>
 
-          <div className={styles.split}>
-            <div data-reveal>
-              <h3 className={styles.subhead}>工具箱</h3>
-              <ul className={styles.tools}>
-                {toolbox.map((t) => (
-                  <li key={t.name}>
-                    <span className={styles.toolName}>{t.name}</span>
-                    <span className={styles.toolUse}>{t.usedIn}</span>
-                  </li>
-                ))}
-              </ul>
+          <Link href="/learning/" className={styles.report} data-reveal>
+            <div className={styles.reportText}>
+              <p className={styles.reportKicker}>學習報告 · {report.term}</p>
+              <p className={styles.reportTitle}>完整的學習報告</p>
+              <p className={styles.reportBody}>
+                依照自學學習報告的五個面向整理：目標、課程、成果、心得與展望。也可以直接列印或存成 PDF。
+              </p>
             </div>
-
-            <div data-reveal>
-              <h3 className={styles.subhead}>夢想清單</h3>
-              <ul className={styles.dreams}>
-                {dreams.map((d) => (
-                  <li key={d.goal} data-status={d.status}>
-                    <span className={styles.check} aria-hidden="true" />
-                    <div>
-                      <p className={styles.dreamWhen}>{d.when}</p>
-                      <p className={styles.dreamGoal}>{d.goal}</p>
-                    </div>
-                    <span className={styles.dreamNote}>{d.note}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
+            <ol className={styles.reportParts}>
+              {parts.map((p) => (
+                <li key={p.id}>
+                  <span>{p.no}</span>
+                  {p.label}
+                </li>
+              ))}
+            </ol>
+            <span className={styles.reportGo}>
+              閱讀報告 <span aria-hidden="true">→</span>
+            </span>
+          </Link>
         </div>
       </section>
     </>

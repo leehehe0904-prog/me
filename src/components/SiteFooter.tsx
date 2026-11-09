@@ -6,7 +6,7 @@ import styles from "./SiteFooter.module.css";
 
 export default function SiteFooter() {
   return (
-    <footer className={styles.footer}>
+    <footer className={styles.footer} data-print="hide">
       <div className="container">
         <div className={styles.top}>
           <p className={styles.big} data-reveal>
@@ -34,7 +34,7 @@ export default function SiteFooter() {
                   <Link href="/#about">關於我</Link>
                 </li>
                 <li>
-                  <Link href="/#journey">學習歷程</Link>
+                  <Link href="/learning/">學習報告</Link>
                 </li>
                 <li>
                   <a href={profile.github} target="_blank" rel="noopener noreferrer">

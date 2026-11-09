@@ -11,7 +11,7 @@ const links = [
   { href: "/#works", label: "作品", no: "01" },
   { href: "/#play", label: "遊戲間", no: "02" },
   { href: "/#about", label: "關於我", no: "03" },
-  { href: "/#journey", label: "歷程", no: "04" },
+  { href: "/learning/", label: "學習報告", no: "04" },
 ];
 
 export default function SiteHeader() {
@@ -41,7 +41,7 @@ export default function SiteHeader() {
   }, [open]);
 
   return (
-    <header className={styles.header} data-scrolled={scrolled || open} data-open={open}>
+    <header className={styles.header} data-print="hide" data-scrolled={scrolled || open} data-open={open}>
       <div className={`container ${styles.bar}`}>
         <Link href="/" className={styles.brand} aria-label={`${profile.name}，回到首頁`}>
           <Seal size={30} />

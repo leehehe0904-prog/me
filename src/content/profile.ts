@@ -49,13 +49,6 @@ export const journey = [
   },
 ] as const;
 
-/** 原本網站上的「我的夢想」，加上目前的進度 */
-export const dreams = [
-  { when: "現在", goal: "做出自己的第一個網站", status: "done", note: "2026 年 10 月完成" },
-  { when: "不久的將來", goal: "做出一款自己的小遊戲", status: "done", note: "提早達成，而且做了四款" },
-  { when: "長大以後", goal: "成為厲害的工程師", status: "doing", note: "進行中" },
-] as const;
-
 /** 工具箱：每一項都附上在哪個作品用過 */
 export const toolbox = [
   { name: "HTML", usedIn: "每一個網頁與遊戲的骨架" },

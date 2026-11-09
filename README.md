@@ -19,7 +19,10 @@ npm run build    # 輸出靜態網站到 out/
 
 ## 要改內容的話
 
-- 個人資料、興趣、學習歷程、夢想、工具箱：`src/content/profile.ts`
+- 個人資料、興趣、學習歷程、工具箱：`src/content/profile.ts`
+- 學習報告頁（`/learning/`）：`src/content/report.ts`。架構依照自學學習報告書的五個面向
+  （目標、課程與教學、學習成果、心得與挑戰、未來展望）；標「草稿」的段落請老師確認，
+  `honors`（獲獎）和 `observers`（老師、家長的話）填了才會出現在頁面上。頁面上有「列印／存成 PDF」按鈕。
 - 作品介紹、亮點、操作方式、截圖：`src/content/works.ts`
 - 截圖檔案：`src/assets/shots/`（建議 1600×1000 的 WebP）
 - 顏色與字型：`src/app/globals.css` 最上面的 `:root`

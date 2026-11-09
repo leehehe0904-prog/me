@@ -1,0 +1,112 @@
+.toc {
+  position: sticky;
+  top: calc(var(--header-h) + 32px);
+  align-self: start;
+}
+.title {
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--ink);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  color: var(--ink-3);
+}
+.toc ol {
+  display: grid;
+}
+.link {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding: 12px 0 12px 14px;
+  border-bottom: 1px solid var(--line);
+  font-size: 15px;
+  color: var(--ink-2);
+  transition: color 0.2s;
+}
+.link::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 3px;
+  height: 0;
+  background: var(--cinnabar);
+  transform: translateY(-50%);
+  transition: height 0.25s var(--ease);
+}
+.link:hover {
+  color: var(--ink);
+}
+.link[aria-current] {
+  color: var(--ink);
+  font-weight: 500;
+}
+.link[aria-current]::before {
+  height: 18px;
+}
+.no {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  color: var(--ink-3);
+  transition: color 0.2s;
+}
+.link[aria-current] .no {
+  color: var(--cinnabar);
+}
+
+/* 手機與平板：變成頂端的橫向標籤列 */
+@media (max-width: 1000px) {
+  .toc {
+    top: var(--header-h);
+    z-index: 5;
+    margin-inline: calc(var(--gutter) * -1);
+    padding-inline: var(--gutter);
+    background: color-mix(in srgb, var(--paper) 97%, transparent);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .title {
+    display: none;
+  }
+  .toc ol {
+    display: flex;
+    gap: 4px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .toc ol::-webkit-scrollbar {
+    display: none;
+  }
+  .link {
+    padding: 14px 10px;
+    border-bottom: 0;
+    white-space: nowrap;
+    font-size: 14px;
+    gap: 6px;
+  }
+  .link::before {
+    top: auto;
+    bottom: 0;
+    left: 10px;
+    right: 10px;
+    width: auto;
+    height: 2px;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.25s var(--ease);
+  }
+  .link[aria-current]::before {
+    height: 2px;
+    transform: scaleX(1);
+  }
+}
+
+@media print {
+  .toc {
+    display: none;
+  }
+}

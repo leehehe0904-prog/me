@@ -1,0 +1,958 @@
+.page {
+  padding-bottom: clamp(72px, 9vw, 140px);
+}
+
+/* ───────── 封面 ───────── */
+.head {
+  padding-top: clamp(28px, 4vw, 48px);
+}
+.back {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  font-size: 14px;
+  color: var(--ink-2);
+  transition: color 0.2s;
+}
+.back:hover {
+  color: var(--cinnabar);
+}
+
+.headGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 4fr);
+  gap: clamp(32px, 5vw, 80px);
+  align-items: end;
+  margin-top: clamp(36px, 5vw, 64px);
+  padding-bottom: clamp(40px, 5vw, 72px);
+  border-bottom: 1px solid var(--ink);
+}
+.kicker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  color: var(--ink-3);
+}
+.accent {
+  color: var(--cinnabar);
+}
+.title {
+  margin-top: 14px;
+  font-family: var(--font-serif);
+  font-weight: 900;
+  font-size: clamp(44px, 7.2vw, 96px);
+  line-height: 1.12;
+  letter-spacing: 0.03em;
+}
+.summary {
+  margin-top: 24px;
+  max-width: 30em;
+  font-size: 18px;
+  color: var(--ink-2);
+}
+
+.metaBox {
+  padding-top: 18px;
+  border-top: 1px solid var(--ink);
+}
+.meta > div {
+  display: grid;
+  grid-template-columns: 5em 1fr;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 15px;
+}
+.meta dt {
+  color: var(--ink-3);
+}
+.print {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  height: 48px;
+  margin-top: 20px;
+  border: 1px solid var(--ink);
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    background 0.2s var(--ease),
+    color 0.2s var(--ease);
+}
+.print:hover {
+  background: var(--ink);
+  color: var(--paper-3);
+}
+
+/* ───────── 版面：左目錄、右內容 ───────── */
+.layout {
+  display: grid;
+  grid-template-columns: 200px minmax(0, 1fr);
+  gap: clamp(40px, 6vw, 96px);
+  padding-top: clamp(48px, 6vw, 88px);
+}
+.body {
+  min-width: 0;
+}
+
+.part + .part {
+  margin-top: clamp(96px, 12vw, 168px);
+}
+
+.partHead {
+  margin-bottom: clamp(36px, 5vw, 56px);
+}
+.partLabel {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  color: var(--ink-2);
+}
+.partNo {
+  display: inline-grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 1.5px solid var(--cinnabar);
+  border-radius: 4px;
+  font-family: var(--font-serif);
+  font-weight: 900;
+  font-size: 20px;
+  letter-spacing: 0;
+  color: var(--cinnabar);
+}
+.partTitle {
+  margin-top: 20px;
+  font-family: var(--font-serif);
+  font-weight: 900;
+  font-size: clamp(30px, 4vw, 52px);
+  line-height: 1.25;
+  letter-spacing: 0.02em;
+  text-wrap: balance;
+}
+.partLead {
+  margin-top: 16px;
+  max-width: 36em;
+  font-size: 17px;
+  color: var(--ink-2);
+}
+
+.subhead {
+  margin-top: clamp(48px, 6vw, 72px);
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--ink);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  color: var(--ink-3);
+}
+.partHead + .subhead {
+  margin-top: 0;
+}
+.note,
+.source {
+  margin-top: 14px;
+  font-size: 14px;
+  color: var(--ink-3);
+}
+
+/* 狀態標籤 */
+.pill {
+  justify-self: end;
+  padding: 2px 12px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.pill[data-status="done"] {
+  background: var(--pine-soft);
+  color: var(--pine);
+}
+.pill[data-status="doing"] {
+  background: var(--cinnabar-soft);
+  color: var(--cinnabar-deep);
+}
+.pill[data-status="next"] {
+  border: 1px solid var(--line-strong);
+  color: var(--ink-2);
+}
+
+/* ───────── 壹、目標 ───────── */
+.ownGoals {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+}
+.ownGoals li {
+  display: flex;
+  flex-direction: column;
+  padding: 24px 24px 26px 0;
+}
+.ownGoals li + li {
+  padding-left: 24px;
+  border-left: 1px solid var(--line-strong);
+}
+.when {
+  font-size: 13px;
+  color: var(--ink-3);
+}
+.ownGoal {
+  margin-top: 6px;
+  margin-bottom: 18px;
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: clamp(19px, 1.9vw, 23px);
+  line-height: 1.5;
+  letter-spacing: 0.03em;
+}
+.ownNote {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: auto;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--pine);
+}
+.ownGoals li[data-status="doing"] .ownNote {
+  color: var(--cinnabar);
+}
+.mark {
+  position: relative;
+  flex: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1.5px solid currentColor;
+}
+.ownGoals li[data-status="done"] .mark {
+  background: var(--pine);
+  border-color: var(--pine);
+}
+.ownGoals li[data-status="done"] .mark::after {
+  content: "";
+  position: absolute;
+  left: 5.5px;
+  top: 2.5px;
+  width: 5px;
+  height: 9px;
+  border: solid var(--paper-3);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+.ownGoals li[data-status="doing"] .mark {
+  border-style: dashed;
+  animation: spin 8s linear infinite;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.ownGoals + .source {
+  padding-top: 14px;
+  margin-top: 0;
+  border-top: 1px solid var(--line-strong);
+}
+
+.goalList li {
+  display: grid;
+  grid-template-columns: 2.6em minmax(0, 1fr) auto;
+  gap: 4px 16px;
+  align-items: baseline;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--line-strong);
+}
+.goalNo {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--cinnabar);
+}
+.goal {
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.6;
+}
+.evidence {
+  margin-top: 4px;
+  font-size: 14px;
+  color: var(--ink-3);
+}
+.evidence a {
+  color: var(--ink-2);
+  border-bottom: 1px solid var(--line-strong);
+  transition:
+    color 0.2s,
+    border-color 0.2s;
+}
+.evidence a:hover {
+  color: var(--cinnabar);
+  border-color: var(--cinnabar);
+}
+
+/* ───────── 貳、課程 ───────── */
+.methods {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 clamp(24px, 4vw, 56px);
+}
+.methods li {
+  display: grid;
+  grid-template-columns: 2.6em 1fr;
+  align-content: start;
+  gap: 4px 0;
+  padding: 22px 0 24px;
+  border-bottom: 1px solid var(--line-strong);
+}
+.methodNo {
+  grid-row: span 2;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 2;
+  color: var(--cinnabar);
+}
+.methods h4 {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: 0.04em;
+}
+.methods p {
+  font-size: 15px;
+  color: var(--ink-2);
+}
+.methods[data-variant="plain"] .methodNo {
+  color: var(--pine);
+}
+
+.weeks li {
+  display: grid;
+  grid-template-columns: 7.5em minmax(0, 1fr) minmax(0, 15em);
+  gap: 8px clamp(16px, 3vw, 36px);
+  padding: 24px 0;
+  border-bottom: 1px solid var(--line-strong);
+}
+.weekNo {
+  display: flex;
+  flex-direction: column;
+  font-weight: 500;
+  font-size: 15px;
+}
+.weekNo time {
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-size: 13px;
+  color: var(--ink-3);
+}
+.weekBody h4 {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: 0.04em;
+}
+.weekBody p {
+  margin-top: 4px;
+  font-size: 15px;
+  color: var(--ink-2);
+}
+.concepts {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 6px;
+}
+.concepts li {
+  display: block;
+  padding: 1px 10px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--pine-soft);
+  color: var(--pine);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.9;
+}
+
+.domains {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  margin-top: 24px;
+  background: var(--line-strong);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.domains > li {
+  padding: 24px 22px 26px;
+  background: var(--paper-3);
+}
+.domainHead {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 700;
+  font-size: 17px;
+  letter-spacing: 0.08em;
+}
+.domainMark {
+  display: inline-grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 4px;
+  background: var(--pine);
+  color: var(--paper-3);
+  font-family: var(--font-serif);
+  font-weight: 900;
+  font-size: 17px;
+  letter-spacing: 0;
+}
+.domainItems {
+  display: grid;
+  gap: 14px;
+  margin-top: 18px;
+}
+.domainItems p {
+  font-size: 15px;
+  line-height: 1.7;
+}
+.domainItems span {
+  display: block;
+  margin-top: 2px;
+  font-size: 12px;
+  color: var(--ink-3);
+}
+.domainItems span::before {
+  content: "— ";
+}
+
+.tools {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 clamp(24px, 4vw, 56px);
+}
+.tools li {
+  display: grid;
+  grid-template-columns: 8.5em 1fr;
+  gap: 16px;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--line-strong);
+  font-size: 15px;
+}
+.toolName {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 14px;
+}
+.toolUse {
+  color: var(--ink-2);
+}
+
+/* ───────── 參、成果 ───────── */
+.figures {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+}
+.figures > div {
+  padding: 18px 20px 20px 0;
+}
+.figures > div + div {
+  padding-left: 20px;
+  border-left: 1px solid var(--line-strong);
+}
+.figures dt {
+  font-size: 13px;
+  color: var(--ink-3);
+}
+.figures dd {
+  margin-top: 2px;
+  font-family: var(--font-serif);
+  font-weight: 900;
+  font-size: clamp(40px, 5vw, 60px);
+  line-height: 1.1;
+}
+.figures small {
+  margin-left: 4px;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--ink-2);
+}
+
+.records li {
+  display: grid;
+  grid-template-columns: 7.5em minmax(0, 1fr) auto;
+  gap: 4px clamp(16px, 3vw, 36px);
+  align-items: baseline;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line-strong);
+}
+.recDate {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--ink-3);
+}
+.recMain {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 16px;
+}
+.recTitle {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: 0.04em;
+  background-image: linear-gradient(var(--cinnabar), var(--cinnabar));
+  background-size: 0% 2px;
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  transition: background-size 0.4s var(--ease);
+}
+.recTitle:hover {
+  background-size: 100% 2px;
+}
+.recGenre {
+  font-size: 14px;
+  color: var(--ink-3);
+}
+.recPlay {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink);
+  border-bottom: 1.5px solid var(--cinnabar);
+  white-space: nowrap;
+  transition: color 0.2s;
+}
+.recPlay:hover {
+  color: var(--cinnabar);
+}
+
+.highlights {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(16px, 2vw, 24px);
+  margin-top: 24px;
+}
+.highlights a {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 22px 22px 54px;
+  border-top: 3px solid var(--cinnabar);
+  background: var(--paper-3);
+  border-radius: 0 0 var(--radius) var(--radius);
+  box-shadow: 0 1px 0 var(--line);
+  transition:
+    transform 0.3s var(--ease),
+    box-shadow 0.3s var(--ease);
+}
+.highlights a:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 36px -24px rgba(26, 24, 20, 0.5);
+}
+.highlights h4 {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.45;
+  letter-spacing: 0.03em;
+}
+.highlights p {
+  margin-top: 10px;
+  font-size: 15px;
+  color: var(--ink-2);
+}
+.more {
+  position: absolute;
+  left: 22px;
+  bottom: 18px;
+  color: var(--cinnabar);
+  transition: transform 0.3s var(--ease);
+}
+.highlights a:hover .more {
+  transform: translateX(4px);
+}
+
+/* ───────── 肆、心得 ───────── */
+.quotes {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+  gap: clamp(24px, 4vw, 56px);
+  align-items: end;
+  margin-top: 28px;
+}
+.quote blockquote {
+  margin: 0;
+}
+.quote p {
+  position: relative;
+  font-family: var(--font-serif);
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: 0.03em;
+  text-wrap: balance;
+}
+.quote p::before {
+  content: "「";
+  margin-left: -0.6em;
+  color: var(--cinnabar);
+}
+.quote p::after {
+  content: "」";
+  color: var(--cinnabar);
+}
+.quote[data-size="lg"] p {
+  font-size: clamp(26px, 3.2vw, 40px);
+}
+.quote[data-size="sm"] p {
+  font-size: clamp(19px, 2vw, 24px);
+  color: var(--ink-2);
+}
+.quote figcaption {
+  margin-top: 14px;
+  font-size: 13px;
+  color: var(--ink-3);
+}
+
+.challenges > li {
+  padding: 26px 0 28px;
+  border-bottom: 1px solid var(--line-strong);
+}
+.chMeta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 14px;
+  font-weight: 700;
+  font-size: 16px;
+}
+.chMeta span {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 13px;
+  color: var(--cinnabar);
+}
+.chMeta time {
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-size: 13px;
+  color: var(--ink-3);
+}
+.chGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) minmax(0, 5fr) minmax(0, 3fr);
+  gap: 16px clamp(20px, 3vw, 40px);
+  margin-top: 14px;
+}
+.chGrid dt {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: var(--ink-3);
+}
+.chGrid dd {
+  margin-top: 4px;
+  font-size: 15px;
+  color: var(--ink-2);
+}
+.chLearned {
+  padding-left: clamp(16px, 2vw, 24px);
+  border-left: 2px solid var(--pine);
+}
+.chLearned dt {
+  color: var(--pine);
+}
+.chLearned dd {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.55;
+  color: var(--ink);
+}
+
+.observers {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(20px, 3vw, 40px);
+  margin-top: 24px;
+}
+.observer {
+  padding: 24px;
+  background: var(--paper-3);
+  border-radius: var(--radius);
+}
+.observer p {
+  font-size: 16px;
+  line-height: 1.9;
+  color: var(--ink-2);
+}
+.observer figcaption {
+  margin-top: 12px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-3);
+}
+
+/* ───────── 伍、展望 ───────── */
+.course {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: clamp(28px, 4vw, 56px);
+  padding: clamp(28px, 4vw, 48px);
+  background: var(--night);
+  color: var(--night-text);
+  border-radius: var(--radius);
+}
+.courseKicker {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  color: var(--amber);
+}
+.courseHead h3 {
+  margin-top: 12px;
+  font-family: var(--font-serif);
+  font-weight: 900;
+  font-size: clamp(24px, 2.6vw, 32px);
+  line-height: 1.35;
+  letter-spacing: 0.03em;
+  text-wrap: balance;
+}
+.courseHead > p:not(.courseKicker) {
+  margin-top: 16px;
+  font-size: 15px;
+  color: var(--night-muted);
+}
+.courseLink {
+  display: inline-block;
+  margin-top: 22px;
+  font-size: 15px;
+  font-weight: 500;
+  border-bottom: 1.5px solid var(--cinnabar-bright);
+  transition: color 0.2s;
+}
+.courseLink:hover {
+  color: var(--cinnabar-bright);
+}
+.chapters {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 clamp(16px, 2.5vw, 32px);
+  align-content: start;
+}
+.chapters li {
+  padding: 12px 0 14px;
+  border-bottom: 1px solid var(--night-line);
+}
+.chNo {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--amber);
+}
+.chTitle {
+  font-weight: 700;
+  font-size: 16px;
+}
+.chSub {
+  font-size: 13px;
+  color: var(--night-muted);
+}
+
+.closing {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px 24px;
+  margin-top: clamp(56px, 7vw, 88px);
+  padding-top: 20px;
+  border-top: 1px solid var(--ink);
+  font-size: 15px;
+  color: var(--ink-2);
+}
+.closing a {
+  font-weight: 500;
+  color: var(--ink);
+  border-bottom: 1.5px solid var(--cinnabar);
+}
+
+/* ───────── 響應式 ───────── */
+@media (max-width: 1000px) {
+  .layout {
+    display: block;
+    padding-top: 0;
+  }
+  .body {
+    padding-top: clamp(40px, 6vw, 64px);
+  }
+  .part {
+    scroll-margin-top: 56px;
+  }
+  .course {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 900px) {
+  .headGrid {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+  .domains {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .highlights {
+    grid-template-columns: 1fr;
+  }
+  .highlights a {
+    padding-bottom: 22px;
+    padding-right: 48px;
+  }
+  .more {
+    left: auto;
+    right: 20px;
+    bottom: auto;
+    top: 24px;
+  }
+  .chGrid {
+    grid-template-columns: 1fr;
+  }
+  .chLearned {
+    padding-left: 16px;
+  }
+  .weeks li {
+    grid-template-columns: 6.5em minmax(0, 1fr);
+  }
+  .concepts {
+    grid-column: 2;
+  }
+}
+
+@media (max-width: 640px) {
+  .ownGoals {
+    grid-template-columns: 1fr;
+  }
+  .ownGoals li,
+  .ownGoals li + li {
+    padding: 18px 0;
+    border-left: 0;
+  }
+  .ownGoals li + li {
+    border-top: 1px solid var(--line-strong);
+  }
+  .ownGoal {
+    margin-bottom: 10px;
+  }
+  .goalList li {
+    grid-template-columns: 2.2em minmax(0, 1fr);
+  }
+  .goalList .pill {
+    grid-column: 2;
+    justify-self: start;
+    margin-top: 6px;
+  }
+  .methods,
+  .tools,
+  .domains,
+  .quotes,
+  .observers,
+  .chapters {
+    grid-template-columns: 1fr;
+  }
+  .tools li {
+    grid-template-columns: 7.5em 1fr;
+  }
+  .weeks li {
+    grid-template-columns: 1fr;
+  }
+  .weekNo {
+    flex-direction: row;
+    align-items: baseline;
+    gap: 12px;
+  }
+  .concepts {
+    grid-column: auto;
+  }
+  .figures {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .figures > div:nth-child(3) {
+    padding-left: 0;
+    border-left: 0;
+  }
+  .figures > div:nth-child(n + 3) {
+    border-top: 1px solid var(--line-strong);
+  }
+  .records li {
+    grid-template-columns: 1fr auto;
+  }
+  .recDate {
+    grid-column: 1 / -1;
+  }
+  .quote p::before {
+    margin-left: -0.5em;
+  }
+}
+
+/* ───────── 列印：直接附在紙本報告書 ───────── */
+@media print {
+  .back,
+  .print {
+    display: none;
+  }
+  .layout {
+    display: block;
+  }
+  .part + .part {
+    margin-top: 48px;
+  }
+  .part {
+    break-before: page;
+  }
+  .part:first-child {
+    break-before: auto;
+  }
+  .weeks li,
+  .challenges > li,
+  .domains > li,
+  .highlights li,
+  .goalList li,
+  .course {
+    break-inside: avoid;
+  }
+  .course {
+    background: none;
+    color: var(--ink);
+    border: 1px solid var(--ink);
+  }
+  .courseHead > p:not(.courseKicker),
+  .chSub {
+    color: var(--ink-2);
+  }
+  .courseKicker,
+  .chNo {
+    color: var(--cinnabar);
+  }
+  .chapters li {
+    border-color: var(--line-strong);
+  }
+}

@@ -197,3 +197,27 @@ button {
     transform: none;
   }
 }
+
+/* 列印（學習報告頁可以直接列印或存成 PDF） */
+@media print {
+  @page {
+    margin: 16mm 14mm;
+  }
+  body {
+    background: #fff;
+    font-size: 11pt;
+  }
+  body::before,
+  .skip-link,
+  [data-print="hide"] {
+    display: none !important;
+  }
+  .js [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  a {
+    text-decoration: none;
+  }
+}
