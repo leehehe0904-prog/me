@@ -32,8 +32,8 @@ export default function Home() {
               點子做成<em>遊戲</em>。
             </p>
             <p className={styles.heroBody} data-reveal style={{ "--reveal-delay": "0.15s" } as React.CSSProperties}>
-              2026 年 10 月，我做出第一個網站；一週後做出雙人對戰遊戲，再過一週開始做
-              3D。這裡收錄我目前的四款作品，和一路學到的東西。
+              我的遊戲大多是和 AI 一起做的：我想玩法、描述需求、試玩挑問題，AI
+              幫忙寫程式。做出來之後，再一步一步弄懂它是怎麼運作的。
             </p>
             <div className={styles.heroActions} data-reveal style={{ "--reveal-delay": "0.2s" } as React.CSSProperties}>
               <Link href="#works" className={styles.btnPrimary}>
@@ -88,9 +88,9 @@ export default function Home() {
               </dd>
             </div>
             <div>
-              <dt>從第一個網頁到第二款 3D 遊戲</dt>
+              <dt>這一階段</dt>
               <dd>
-                28<small>天</small>
+                5<small>週</small>
               </dd>
             </div>
             <div>
@@ -111,7 +111,7 @@ export default function Home() {
             no="01"
             label="作品"
             title="四款遊戲，兩款 2D、兩款 3D。"
-            lead="每一款都能在瀏覽器裡直接玩。點進去可以看到玩法、操作方式，以及做的時候的想法。"
+            lead="每一款都能在瀏覽器裡直接玩。這些作品大多是軒赫描述想法、和 AI 一起寫出來的；點進去可以看到玩法和操作方式。"
           />
           <div className={styles.workList}>
             <WorkEntry work={zombie} />
@@ -158,7 +158,7 @@ export default function Home() {
                 </div>
                 <div>
                   <dt>正在學</dt>
-                  <dd>JavaScript、Three.js</dd>
+                  <dd>看懂 AI 寫的程式</dd>
                 </div>
                 <div>
                   <dt>喜歡</dt>
@@ -177,9 +177,9 @@ export default function Home() {
                 歲。玩遊戲的時候，我常常在想：這個敵人為什麼會追著我跑？這個畫面是怎麼畫出來的？
               </p>
               <p data-reveal>
-                為了找到答案，我開始學 HTML、CSS 和
-                JavaScript。從一個自我介紹的網頁開始，接著做出能兩個人對打的遊戲，現在已經在做有燈光、物理和連線的 3D
-                世界。
+                為了找到答案，我開始學寫程式。我的作品大多是和 AI
+                一起做的：我負責想點子、描述需求和試玩，AI 寫出大部分的程式。做得出來不代表看得懂，所以現在我也在學怎麼讀懂這些程式，讓 AI
+                幫我學，而不是幫我想。
               </p>
               <ul className={styles.interests}>
                 {interests.map((it, i) => (
@@ -201,7 +201,7 @@ export default function Home() {
           <SectionHead
             no="04"
             label="學習歷程"
-            title="28 天，五個里程碑。"
+            title="五週，五個里程碑。"
             lead="以下日期都來自 Git 的提交紀錄。每一次存檔，都是一小步；完整的目標、課程與心得整理在學習報告裡。"
           />
 

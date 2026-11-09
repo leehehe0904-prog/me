@@ -50,7 +50,7 @@ export default function SiteFooter() {
           <span className={styles.sign}>
             <Seal size={22} />© 2026 {profile.name}
           </span>
-          <span>用 HTML、CSS、JavaScript 與 Next.js 製作</span>
+          <span>本站以 Next.js 建置</span>
         </div>
       </div>
     </footer>

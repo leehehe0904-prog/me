@@ -9,8 +9,8 @@ import {
   challenges,
   courseGoals,
   domains,
-  highlights,
   honors,
+  level,
   methods,
   nextCourse,
   nextGoals,
@@ -18,6 +18,7 @@ import {
   ownGoals,
   parts,
   report,
+  roles,
   statusLabel,
   studentWords,
   weekly,
@@ -88,12 +89,12 @@ export default function LearningPage() {
               <span>{report.term}</span>
             </p>
             <h1 className={styles.title}>
-              這一季，
+              這一季的
               <br />
-              我學會的事。
+              學習紀錄。
             </h1>
             <p className={styles.summary}>
-              依照自學學習報告的五個面向整理：目標、課程、成果、心得與展望。提到的每一款作品都可以點進去看，也可以直接玩。
+              依照自學學習報告的五個面向整理。這一階段的作品大多是和 AI 一起做的，所以這份紀錄也老實寫下：哪些已經懂了，哪些還在學。
             </p>
           </div>
 
@@ -133,7 +134,7 @@ export default function LearningPage() {
           <section id="goals" className={styles.part}>
             <PartHead
               id="goals"
-              title="想做到的事，和做到了多少。"
+              title="想做到的事，和目前的進度。"
               lead="目標有兩種：一種是軒赫自己寫下的夢想，一種是這一階段課程想培養的能力。"
             />
 
@@ -160,7 +161,7 @@ export default function LearningPage() {
                   <div className={styles.goalText}>
                     <p className={styles.goal}>{g.goal}</p>
                     <p className={styles.evidence}>
-                      對應作品：<SmartLink href={g.href}>{g.evidence}</SmartLink>
+                      對應：{g.href ? <SmartLink href={g.href}>{g.evidence}</SmartLink> : g.evidence}
                     </p>
                   </div>
                   <Pill status={g.status} />
@@ -173,9 +174,23 @@ export default function LearningPage() {
           <section id="course" className={styles.part}>
             <PartHead
               id="course"
-              title="用做遊戲，學寫程式。"
-              lead={report.mode + "。每一階段都從一個想做的遊戲出發，做的過程中遇到什麼，就學什麼。"}
+              title="和 AI 一起做，再回頭弄懂。"
+              lead={report.mode + "。這一階段的作品，大部分程式是 AI 寫的；課堂的重點，是把做出來的東西拆開，弄懂它為什麼會動。"}
             />
+
+            <h3 className={styles.subhead}>分工</h3>
+            <ul className={styles.roles}>
+              {roles.map((r, i) => (
+                <li key={r.who} data-reveal style={delay(i)}>
+                  <p className={styles.roleWho}>{r.who}</p>
+                  <ul>
+                    {r.items.map((it) => (
+                      <li key={it}>{it}</li>
+                    ))}
+                  </ul>
+                </li>
+              ))}
+            </ul>
 
             <h3 className={styles.subhead}>學習方式</h3>
             <ul className={styles.methods}>
@@ -199,7 +214,7 @@ export default function LearningPage() {
                     <h4>{j.title}</h4>
                     <p>{j.body}</p>
                   </div>
-                  <ul className={styles.concepts} aria-label="這週學到的概念">
+                  <ul className={styles.concepts} aria-label="這週接觸到的概念">
                     {weekly[j.date]?.map((c) => (
                       <li key={c}>{c}</li>
                     ))}
@@ -208,8 +223,10 @@ export default function LearningPage() {
               ))}
             </ol>
 
-            <h3 className={styles.subhead}>一個專題，碰到好幾個科目</h3>
-            <p className={styles.note}>做遊戲不只是寫程式。下面每一項，都是作品裡真的用到的東西。</p>
+            <h3 className={styles.subhead}>作品裡出現的各科概念</h3>
+            <p className={styles.note}>
+              做遊戲會碰到很多科目的概念。這些多半是 AI 寫進程式裡的：出現在作品裡，不代表已經學會，這也是下一階段要一個一個弄懂的地方。
+            </p>
             <ul className={styles.domains}>
               {domains.map((d, i) => (
                 <li key={d.name} data-reveal style={delay(i % 3)}>
@@ -246,13 +263,13 @@ export default function LearningPage() {
           <section id="results" className={styles.part}>
             <PartHead
               id="results"
-              title="四週，四款能玩的遊戲。"
-              lead="成果都是可以實際打開來玩的作品，日期來自 Git 紀錄。"
+              title="四款作品，和還在學的地方。"
+              lead="成果是可以實際打開來玩的作品，日期來自 Git 紀錄。不過作品能玩，不等於每一行程式都懂，所以這裡也寫下目前的程度。"
             />
 
             <dl className={styles.figures} data-reveal>
               <div>
-                <dt>完成的遊戲</dt>
+                <dt>作品</dt>
                 <dd>
                   {works.length}
                   <small>款</small>
@@ -315,20 +332,29 @@ export default function LearningPage() {
               ))}
             </ul>
 
-            <h3 className={styles.subhead}>特殊表現</h3>
-            <ul className={styles.highlights}>
-              {highlights.map((h, i) => (
-                <li key={h.title} data-reveal style={delay(i)}>
-                  <Link href={h.href}>
-                    <h4>{h.title}</h4>
-                    <p>{h.body}</p>
-                    <span className={styles.more} aria-hidden="true">
-                      →
-                    </span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            <h3 className={styles.subhead}>目前的程度</h3>
+            <div className={styles.level}>
+              <div data-reveal>
+                <p className={styles.levelHead} data-kind="can">
+                  做得到
+                </p>
+                <ul>
+                  {level.can.map((t) => (
+                    <li key={t}>{t}</li>
+                  ))}
+                </ul>
+              </div>
+              <div data-reveal style={delay(1)}>
+                <p className={styles.levelHead} data-kind="practicing">
+                  還在練習
+                </p>
+                <ul>
+                  {level.practicing.map((t) => (
+                    <li key={t}>{t}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
 
             {honors.length > 0 ? (
               <>
@@ -352,8 +378,8 @@ export default function LearningPage() {
           <section id="reflection" className={styles.part}>
             <PartHead
               id="reflection"
-              title="卡住的時候，怎麼解開。"
-              lead="做遊戲最常遇到的不是不會寫，而是寫了卻不照想的跑。這裡記下幾次印象最深的問題。"
+              title="做得出來，不代表看得懂。"
+              lead="用 AI 寫程式，很快就能做出能玩的遊戲；難的是停下來，弄懂它為什麼會動。這是很多用 AI 學程式的學生都會遇到的困境，下面是這一階段遇到的情況，和試著面對的方式。"
             />
 
             <h3 className={styles.subhead}>軒赫說</h3>
@@ -368,27 +394,31 @@ export default function LearningPage() {
               ))}
             </div>
 
-            <h3 className={styles.subhead}>困難與挑戰</h3>
+            <h3 className={styles.subhead}>用 AI 寫程式的困境</h3>
             <ol className={styles.challenges}>
               {challenges.map((c, i) => (
-                <li key={c.problem} data-reveal style={delay(i)}>
+                <li key={c.title} data-reveal style={delay(i)}>
                   <p className={styles.chMeta}>
                     <span>{pad(i + 1)}</span>
-                    {c.work}
-                    <time>{c.date}</time>
+                    {c.title}
+                    {c.example ? (
+                      <small>
+                        例：{c.example.work} · {c.example.date}
+                      </small>
+                    ) : null}
                   </p>
                   <dl className={styles.chGrid}>
                     <div>
-                      <dt>遇到的問題</dt>
+                      <dt>遇到的困境</dt>
                       <dd>{c.problem}</dd>
                     </div>
                     <div>
-                      <dt>怎麼解決</dt>
-                      <dd>{c.solve}</dd>
+                      <dt>怎麼面對</dt>
+                      <dd>{c.approach}</dd>
                     </div>
                     <div className={styles.chLearned}>
-                      <dt>學到的事</dt>
-                      <dd>{c.learned}</dd>
+                      <dt>想養成的習慣</dt>
+                      <dd>{c.habit}</dd>
                     </div>
                   </dl>
                 </li>

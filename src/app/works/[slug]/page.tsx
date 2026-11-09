@@ -66,6 +66,12 @@ export default async function WorkPage(props: PageProps<"/works/[slug]">) {
                 <dt>技術</dt>
                 <dd>{work.tech.join("、")}</dd>
               </div>
+              {work.making ? (
+                <div>
+                  <dt>製作</dt>
+                  <dd>{work.making}</dd>
+                </div>
+              ) : null}
             </dl>
             {work.play.external ? (
               <>

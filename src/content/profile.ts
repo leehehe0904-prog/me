@@ -4,13 +4,13 @@ export const profile = {
   age: 11,
   github: "https://github.com/leehehe0904-prog",
   description:
-    "李軒赫，11 歲，正在學寫程式。從第一個網頁到 3D 開放世界遊戲，這裡收錄他做過的四款遊戲與一路學到的東西。",
+    "李軒赫，11 歲，和 AI 一起做遊戲，也在學著讀懂程式。這裡收錄他的四款作品和學習紀錄。",
 };
 
 /** 興趣（原本網站的內容，重新整理） */
 export const interests = [
   { title: "玩遊戲", body: "喜歡挑戰關卡、動腦破解謎題，玩完常常想：這是怎麼做出來的？" },
-  { title: "寫程式", body: "正在學 HTML、CSS 和 JavaScript，把想到的玩法做成真的能玩的東西。" },
+  { title: "寫程式", body: "正在學 HTML、CSS 和 JavaScript，也在學怎麼和 AI 一起寫程式。" },
   { title: "運動", body: "流汗的感覺很棒，寫程式寫累了就去動一動。" },
   { title: "看書", body: "喜歡科學和冒險故事，很多遊戲點子是從書裡來的。" },
 ];
@@ -32,7 +32,7 @@ export const journey = [
   {
     date: "2026.10.25",
     title: "等天光 · 第七暝",
-    body: "開始做 3D。從灰色方塊搭的場景，一路做到多樓層醫院、十一種活屍與多人連線。",
+    body: "第一款 3D 遊戲，和 AI 一起做。從灰色方塊搭的場景開始，陸續加入多樓層醫院、各種活屍和多人連線。",
     tag: "3D 遊戲",
   },
   {

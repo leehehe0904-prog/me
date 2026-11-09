@@ -306,6 +306,48 @@
 }
 
 /* ───────── 貳、課程 ───────── */
+.roles {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(16px, 2vw, 24px);
+  margin-top: 24px;
+}
+.roles > li {
+  padding: 20px 22px 22px;
+  background: var(--paper-3);
+  border-radius: var(--radius);
+  box-shadow: 0 1px 0 var(--line);
+}
+.roles > li:first-child {
+  box-shadow: inset 0 3px 0 var(--cinnabar), 0 1px 0 var(--line);
+}
+.roleWho {
+  font-family: var(--font-serif);
+  font-weight: 900;
+  font-size: 22px;
+  letter-spacing: 0.06em;
+}
+.roles ul {
+  display: grid;
+  gap: 8px;
+  margin-top: 12px;
+}
+.roles ul li {
+  position: relative;
+  padding-left: 16px;
+  font-size: 15px;
+  color: var(--ink-2);
+}
+.roles ul li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.8em;
+  width: 6px;
+  height: 1.5px;
+  background: var(--ink-3);
+}
+
 .methods {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -546,51 +588,37 @@
   color: var(--cinnabar);
 }
 
-.highlights {
+.level {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(16px, 2vw, 24px);
-  margin-top: 24px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(24px, 4vw, 56px);
 }
-.highlights a {
-  position: relative;
+.levelHead {
   display: flex;
-  flex-direction: column;
-  height: 100%;
-  padding: 22px 22px 54px;
-  border-top: 3px solid var(--cinnabar);
-  background: var(--paper-3);
-  border-radius: 0 0 var(--radius) var(--radius);
-  box-shadow: 0 1px 0 var(--line);
-  transition:
-    transform 0.3s var(--ease),
-    box-shadow 0.3s var(--ease);
-}
-.highlights a:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 18px 36px -24px rgba(26, 24, 20, 0.5);
-}
-.highlights h4 {
+  align-items: center;
+  gap: 10px;
+  padding: 18px 0 6px;
   font-family: var(--font-serif);
   font-weight: 700;
   font-size: 20px;
-  line-height: 1.45;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.04em;
 }
-.highlights p {
-  margin-top: 10px;
+.levelHead::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--pine);
+}
+.levelHead[data-kind="practicing"]::before {
+  background: transparent;
+  border: 1.5px dashed var(--cinnabar);
+}
+.level ul li {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line-strong);
   font-size: 15px;
   color: var(--ink-2);
-}
-.more {
-  position: absolute;
-  left: 22px;
-  bottom: 18px;
-  color: var(--cinnabar);
-  transition: transform 0.3s var(--ease);
-}
-.highlights a:hover .more {
-  transform: translateX(4px);
 }
 
 /* ───────── 肆、心得 ───────── */
@@ -652,7 +680,7 @@
   font-size: 13px;
   color: var(--cinnabar);
 }
-.chMeta time {
+.chMeta small {
   font-family: var(--font-mono);
   font-weight: 400;
   font-size: 13px;
@@ -820,18 +848,8 @@
   .domains {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-  .highlights {
+  .roles {
     grid-template-columns: 1fr;
-  }
-  .highlights a {
-    padding-bottom: 22px;
-    padding-right: 48px;
-  }
-  .more {
-    left: auto;
-    right: 20px;
-    bottom: auto;
-    top: 24px;
   }
   .chGrid {
     grid-template-columns: 1fr;
@@ -872,6 +890,7 @@
   }
   .methods,
   .tools,
+  .level,
   .domains,
   .quotes,
   .observers,
@@ -934,7 +953,7 @@
   .weeks li,
   .challenges > li,
   .domains > li,
-  .highlights li,
+  .roles > li,
   .goalList li,
   .course {
     break-inside: avoid;
